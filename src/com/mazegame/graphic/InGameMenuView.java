@@ -10,6 +10,7 @@ public class InGameMenuView extends View {
     private Game game;
     private static String[] menuFields = {"Resume", "Save", "Quit"};
     private int selected = 0;
+    private static final Font font = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
     InGameMenuView(GameViewManager gm, Game game) {
         super(gm);
@@ -21,7 +22,7 @@ public class InGameMenuView extends View {
     public void draw(Graphics2D graphics) {
         graphics.setColor(new Color(0,0,0,127));
         graphics.fillRect(50,50,GamePanel.WINDOW_WIDTH - 50, GamePanel.WINDOW_HEIGHT - 50);
-
+        graphics.setFont(font);
         for (int i = 0; i < menuFields.length; i++) {
             if (i == selected) {
                 graphics.setColor(Color.RED);

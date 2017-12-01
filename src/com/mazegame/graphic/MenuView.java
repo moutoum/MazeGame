@@ -7,6 +7,7 @@ public class MenuView extends View {
 
     private static String[] Text = {"Play", "Quit"};
     private int selected = 0;
+    private static final Font font = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
     public MenuView(GameViewManager gm) {
         super(gm);
@@ -14,13 +15,14 @@ public class MenuView extends View {
 
     @Override
     public void draw(Graphics2D graphics) {
+        graphics.setFont(font);
         for (int i = 0; i < MenuView.Text.length; i++) {
             if (selected == i) {
                 graphics.setColor(Color.RED);
             } else {
                 graphics.setColor(Color.WHITE);
             }
-            graphics.drawString(MenuView.Text[i], 50, i * 50 + 50);
+            graphics.drawString(MenuView.Text[i], 50, i * 20 + 50);
         }
     }
 
@@ -51,7 +53,7 @@ public class MenuView extends View {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected] == "Quit") {
-            this.drop();
+            this.gm.remove(this);
             System.exit(0);
         }
     }
