@@ -29,7 +29,7 @@ public class LoadView extends View {
         graphics.setColor(Color.WHITE);
         graphics.drawString("Choose your game:", 350, 100);
         graphics.setFont(font);
-        for (int i = 0; i < list.length; i++) {
+        for (int i = 0; list != null && i < list.length; i++) {
             File f = list[i];
             if (f.isFile()) {
 
@@ -57,7 +57,7 @@ public class LoadView extends View {
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (selected < list.length - 1) {
+            if (list != null && selected < list.length - 1) {
                 selected += 1;
             }
         }
@@ -66,7 +66,7 @@ public class LoadView extends View {
             delete();
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (list != null && e.getKeyCode() == KeyEvent.VK_ENTER) {
             Game game;
             try {
                 FileInputStream fileIn = new FileInputStream("./save/"+list[selected].getName());

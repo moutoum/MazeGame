@@ -20,6 +20,7 @@ public class SaveView extends View {
     private String newSave = "<new>";
 
     SaveView(Game game) {
+        new File("./save").mkdirs();
         this.game = game;
         list = dir.listFiles();
     }
@@ -93,7 +94,6 @@ public class SaveView extends View {
             try {
                 String fileName = (selected == 0) ? newSave : list[selected - 1].getName().replace(".msave", "");
 
-                new File("./save").mkdirs();
                 FileOutputStream fileOut = new FileOutputStream("./save/"+fileName+".msave");
                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
                 out.writeObject(game);
