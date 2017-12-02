@@ -2,7 +2,7 @@ package com.mazegame.game;
 
 import java.io.Serializable;
 
-public class Player extends Entity implements Serializable {
+public class Player extends Entity {
 
     public static final int DEFAULT_STRENGTH_LIGHT = 3;
 

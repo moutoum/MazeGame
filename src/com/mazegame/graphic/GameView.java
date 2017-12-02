@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -31,6 +33,15 @@ public class GameView extends View {
     GameView() {
         game = new Game();
         game.start();
+        loadSprites();
+    }
+
+    GameView(Game gameLoaded) {
+        game = gameLoaded;
+        loadSprites();
+    }
+
+    private final void loadSprites() {
         try {
             sprites = ImageIO.read(new FileInputStream("ressources/magecity.png"));
             ground = sprites.getSubimage(32, 0, 32, 32);

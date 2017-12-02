@@ -11,7 +11,6 @@ public class NotificationView extends View {
     private String text;
 
     NotificationView(String text) {
-        System.out.println("Create NotificationView");
         this.isTransparent = true;
         this.isKeyImplemented = false;
         this.isUpdated = false;

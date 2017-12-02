@@ -3,7 +3,7 @@ package com.mazegame.game;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Chest extends Entity implements Serializable {
+public class Chest extends Entity {
 
     private Item[] items = {new Torch(), new BoostSpeed()};
     private boolean isOpen = false;

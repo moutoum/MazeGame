@@ -4,6 +4,10 @@ import com.mazegame.game.Game;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 public class InGameMenuView extends View {
 
@@ -65,6 +69,23 @@ public class InGameMenuView extends View {
 
         if ( e.getKeyCode() == KeyEvent.VK_ENTER && menuFields[selected].equals("Quit")) {
             getParent().delete();
+        }
+
+        if ( e.getKeyCode() == KeyEvent.VK_ENTER && menuFields[selected].equals("Save") ) {
+            View v = new NotificationView("Saving...");
+            addView(v);
+            try {
+                new File("./save").mkdirs();
+                FileOutputStream fileOut = new FileOutputStream("./save/game.msave");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(game);
+                out.close();
+                fileOut.close();
+            } catch (IOException i) {
+                i.printStackTrace();
+            }
+            v.delete();
+            addView(new NotificationView("Saving OK!"));
         }
     }
 
