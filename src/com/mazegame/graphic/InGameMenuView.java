@@ -72,20 +72,7 @@ public class InGameMenuView extends View {
         }
 
         if ( e.getKeyCode() == KeyEvent.VK_ENTER && menuFields[selected].equals("Save") ) {
-            View v = new NotificationView("Saving...");
-            addView(v);
-            try {
-                new File("./save").mkdirs();
-                FileOutputStream fileOut = new FileOutputStream("./save/game.msave");
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(game);
-                out.close();
-                fileOut.close();
-            } catch (IOException i) {
-                i.printStackTrace();
-            }
-            v.delete();
-            addView(new NotificationView("Saving OK!"));
+            addView(new SaveView(game));
         }
     }
 

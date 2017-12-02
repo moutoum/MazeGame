@@ -31,7 +31,7 @@ abstract class View implements KeyListener {
     }
 
 
-    public final void addView(View view) {
+    public void addView(View view) {
         view.setParent(this);
         gm.add(view);
         children.add(view);
@@ -50,7 +50,7 @@ abstract class View implements KeyListener {
         gm.remove(this);
     }
 
-    private void setParent(View parent) {
+    public void setParent(View parent) {
         this.parent = parent;
     }
 

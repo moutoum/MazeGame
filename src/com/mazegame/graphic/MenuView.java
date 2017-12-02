@@ -64,27 +64,16 @@ public class MenuView extends View {
             }
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected] == "Play") {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected].equals("Play")) {
             addView(new GameView());
             //this.gm.add(new GameView(this, this.gm));
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected] == "Load") {
-            Game game;
-            try {
-                FileInputStream fileIn = new FileInputStream("./save/game.msave");
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                game = (Game) in.readObject();
-                in.close();
-                fileIn.close();
-            } catch (Exception i) {
-                addView(new NotificationView("Cannot load your save, sorry"));
-                return;
-            }
-            addView(new GameView(game));
+        if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected].equals("Load")) {
+            addView(new LoadView());
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected] == "Quit") {
+        if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected].equals("Quit")) {
             this.delete();
             System.exit(0);
         }
