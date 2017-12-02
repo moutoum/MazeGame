@@ -38,7 +38,7 @@ public class MenuView extends View {
             } else {
                 graphics.setColor(Color.WHITE);
             }
-            graphics.drawString(MenuView.Text[i], (GamePanel.WINDOW_WIDTH / 2) - (fontMetrics.stringWidth(MenuView.Text[i]) / 2), (GamePanel.WINDOW_HEIGHT / 2) - ((Text.length * (40)) / 2) + (i * 40));
+            graphics.drawString(MenuView.Text[i], 100, (GamePanel.WINDOW_HEIGHT / 2) - ((Text.length * (40)) / 2) + (i * 40));
         }
     }
 

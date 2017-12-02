@@ -9,25 +9,32 @@ import java.io.*;
 public class LoadView extends View {
     private static File dir = new File("./save");
     private static final Font font = new Font(Font.MONOSPACED, Font.BOLD, 15);
+    private static final Font fontTitle = new Font(Font.MONOSPACED, Font.BOLD, 20);
 
     private Game game;
     private File[] list;
     private int selected = 0;
 
     public LoadView() {
+        isTransparent = true;
         list = dir.listFiles();
     }
 
     @Override
     public void draw(Graphics2D graphics) {
-        graphics.setFont(font);
+        graphics.setColor(new Color(0,0,0,127));
+        graphics.fillRect(300, 50, GamePanel.WINDOW_WIDTH - 50 - 300, GamePanel.WINDOW_HEIGHT - 100);
 
+        graphics.setFont(fontTitle);
+        graphics.setColor(Color.WHITE);
+        graphics.drawString("Choose your game:", 350, 100);
+        graphics.setFont(font);
         for (int i = 0; i < list.length; i++) {
             File f = list[i];
             if (f.isFile()) {
 
                 graphics.setColor((i == selected) ? Color.RED : Color.WHITE);
-                graphics.drawString(f.getName().replace(".msave", ""), 50, 50 + (i * 30));
+                graphics.drawString(f.getName().replace(".msave", ""), 350, 150 + (i * 30));
             }
         }
     }
