@@ -28,9 +28,7 @@ public class GameView extends View {
     private BufferedImage[] playerSprite;
     private BufferedImage[] chestSprite;
 
-    GameView(GameViewManager gm) {
-        super(gm);
-
+    GameView() {
         game = new Game();
         game.start();
         try {
@@ -164,7 +162,8 @@ public class GameView extends View {
         game.update();
 
         if ( game.isLevelEnd() ) {
-            gm.add(new NotificationView(gm, "Bravo ! Tu es passé level "+ (game.getLevel().getLevel()+1) ));
+            addView(new NotificationView("Bravo ! Tu es passé level "+ (game.getLevel().getLevel()+1) ));
+            //gm.add(new NotificationView(this, gm, "Bravo ! Tu es passé level "+ (game.getLevel().getLevel()+1) ));
         }
     }
 
@@ -190,16 +189,17 @@ public class GameView extends View {
 
         if (e.getKeyCode() == KeyEvent.VK_F3) {
             if (giv == null) {
-                giv = new GameInfoView(gm, game);
-                gm.add(giv);
+                giv = new GameInfoView(game);
+                addView(giv);
             } else {
-                gm.remove(giv);
+                giv.delete();
                 giv = null;
             }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            gm.add(new InGameMenuView(gm, game));
+            addView(new InGameMenuView(game));
+            //gm.add(new InGameMenuView(this, gm, game));
         }
 
         if (e.getKeyCode() == KeyEvent.VK_PAGE_UP) {
@@ -216,7 +216,7 @@ public class GameView extends View {
             if ( c != null && !c.isOpen() ) {
                 Item i = c.open();
                 i.use(game.getPlayer());
-                gm.add(new NotificationView(gm, String.format("Nouvel item: %s", i.getName())));
+                addView(new NotificationView(String.format("Nouvel item: %s", i.getName())));
             }
         }
     }

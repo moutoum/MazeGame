@@ -12,8 +12,7 @@ public class InGameMenuView extends View {
     private int selected = 0;
     private static final Font font = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
-    InGameMenuView(GameViewManager gm, Game game) {
-        super(gm);
+    InGameMenuView(Game game) {
         this.game = game;
         this.isTransparent = true;
     }
@@ -61,12 +60,11 @@ public class InGameMenuView extends View {
         }
 
         if ( e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_ENTER && menuFields[selected].equals("Resume")) {
-            gm.remove(this);
+            delete();
         }
 
         if ( e.getKeyCode() == KeyEvent.VK_ENTER && menuFields[selected].equals("Quit")) {
-            gm.setSize(1);
-            gm.trimToSize();
+            getParent().delete();
         }
     }
 

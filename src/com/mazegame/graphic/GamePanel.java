@@ -7,8 +7,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
-    public static final int WINDOW_WIDTH = 1024;
-    public static final int WINDOW_HEIGHT = 1024;
+    public static final int WINDOW_WIDTH = 900;
+    public static final int WINDOW_HEIGHT = 900;
     public static final int FPS = 60;
 
     private Thread thread;
@@ -16,14 +16,14 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Graphics2D graphics;
     private boolean running = false;
 
-    private GameViewManager gm = new GameViewManager();
+    private final GameViewManager gm = View.getGm();
 
     public GamePanel() {
         super();
         this.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
         this.setFocusable(true);
         requestFocus();
-        gm.add(new MenuView(gm));
+        View.CreateWithView(new MenuView());
     }
 
     public void addNotify() {
@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
             this.graphics.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
             int i;
-            for (i = gm.size() - 1; gm.get(i).isTransparent; i--);
+            for (i = gm.size() - 1; i >= 0 && gm.get(i).isTransparent; i--);
             for (; i < gm.size(); i++) {
                 gm.get(i).draw(this.graphics);
             }
@@ -107,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (!gm.isEmpty()) {
             int i;
-            for (i = gm.size() - 1; !gm.get(i).isKeyImplemented; i--);
+            for (i = gm.size() - 1; i >= 0 && !gm.get(i).isKeyImplemented; i--);
             gm.get(i).keyPressed(e);
         }
     }
@@ -116,7 +116,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         if (!gm.isEmpty()) {
             int i;
-            for (i = gm.size() - 1; !gm.get(i).isKeyImplemented; i--);
+            for (i = gm.size() - 1; i >= 0 && !gm.get(i).isKeyImplemented; i--);
             gm.get(i).keyReleased(e);
         }
     }

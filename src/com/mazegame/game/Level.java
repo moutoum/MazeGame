@@ -87,9 +87,9 @@ public class Level implements Serializable {
             }
         }
 
-        System.out.println("===== Chest list =====");
+        /*System.out.println("===== Chest list =====");
         for (Chest c : chests) {
             System.out.println(String.format(" - X(%d) Y(%d)", (int) c.getX(), (int) c.getY()));
-        }
+        }*/
     }
 }

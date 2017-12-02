@@ -2,7 +2,6 @@ package com.mazegame.graphic;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 public class NotificationView extends View {
 
@@ -10,9 +9,9 @@ public class NotificationView extends View {
     private long end;
     private Font font = new Font(Font.MONOSPACED, Font.BOLD, 50);
     private String text;
-    
-    NotificationView(GameViewManager gm, String text) {
-        super(gm);
+
+    NotificationView(String text) {
+        System.out.println("Create NotificationView");
         this.isTransparent = true;
         this.isKeyImplemented = false;
         this.isUpdated = false;
@@ -31,7 +30,7 @@ public class NotificationView extends View {
     @Override
     public void update() {
         if (System.currentTimeMillis() >= end) {
-            gm.remove(this);
+            delete();
         }
     }
 

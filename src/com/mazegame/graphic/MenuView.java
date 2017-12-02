@@ -1,28 +1,41 @@
 package com.mazegame.graphic;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class MenuView extends View {
 
     private static String[] Text = {"Play", "Quit"};
     private int selected = 0;
-    private static final Font font = new Font(Font.MONOSPACED, Font.BOLD, 15);
+    private static final Font font = new Font(Font.MONOSPACED, Font.BOLD, 30);
+    private BufferedImage background;
 
-    public MenuView(GameViewManager gm) {
-        super(gm);
+    public MenuView() {
+        try {
+            background = ImageIO.read(new FileInputStream("./ressources/background2.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void draw(Graphics2D graphics) {
+        FontMetrics fontMetrics = graphics.getFontMetrics(font);
         graphics.setFont(font);
+
+        graphics.drawImage(background, 0, 0, GamePanel.WINDOW_WIDTH, GamePanel.WINDOW_HEIGHT, null);
+
         for (int i = 0; i < MenuView.Text.length; i++) {
             if (selected == i) {
                 graphics.setColor(Color.RED);
             } else {
                 graphics.setColor(Color.WHITE);
             }
-            graphics.drawString(MenuView.Text[i], 50, i * 20 + 50);
+            graphics.drawString(MenuView.Text[i], (GamePanel.WINDOW_WIDTH / 2) - (fontMetrics.stringWidth(MenuView.Text[i]) / 2), (GamePanel.WINDOW_HEIGHT / 2) - ((Text.length * (40)) / 2) + (i * 40));
         }
     }
 
@@ -49,11 +62,12 @@ public class MenuView extends View {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected] == "Play") {
-            this.gm.add(new GameView(this.gm));
+            addView(new GameView());
+            //this.gm.add(new GameView(this, this.gm));
         }
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER && MenuView.Text[selected] == "Quit") {
-            this.gm.remove(this);
+            this.delete();
             System.exit(0);
         }
     }

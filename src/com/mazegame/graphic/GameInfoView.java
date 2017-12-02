@@ -12,8 +12,7 @@ public class GameInfoView extends View {
     private Game game;
     private Font font = new Font(Font.MONOSPACED, Font.BOLD, 15);
 
-    GameInfoView(GameViewManager gm, Game game) {
-        super(gm);
+    GameInfoView(Game game) {
         this.isKeyImplemented = false;
         this.isTransparent = true;
         this.isUpdated = false;
