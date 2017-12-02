@@ -11,6 +11,7 @@ public class Player extends Entity {
     private float beginX;
     private float beginY;
     private int strengthLight;
+    private Power power;
 
 
     public Player(int x, int y) {
@@ -24,6 +25,10 @@ public class Player extends Entity {
 
     public void setStrengthLight(int strengthLight) {
         this.strengthLight = (strengthLight < DEFAULT_STRENGTH_LIGHT) ? DEFAULT_STRENGTH_LIGHT : strengthLight;
+    }
+
+    public void usePower() {
+
     }
 
     public void move() {
