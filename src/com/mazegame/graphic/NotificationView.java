@@ -7,7 +7,7 @@ public class NotificationView extends View {
 
     private long start;
     private long end;
-    private Font font = new Font(Font.MONOSPACED, Font.BOLD, 50);
+    private Font font = new Font(Font.MONOSPACED, Font.BOLD, 30);
     private String text;
 
     NotificationView(String text) {

@@ -106,7 +106,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (!gm.isEmpty()) {
-            System.out.println("Tutu");
             int i;
             for (i = gm.size() - 1; i >= 0 && !gm.get(i).isKeyImplemented; i--);
             gm.get(i).keyPressed(e);

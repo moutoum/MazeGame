@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Chest extends Entity {
 
-    private Item[] items = {new Torch(), new BoostSpeed()};
+    private Item[] items = {new Torch(), new BoostSpeed(), new DestructionPowerCapsule()};
     private boolean isOpen = false;
 
     public Chest(float x, float y, Orientation o) {

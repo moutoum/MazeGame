@@ -43,12 +43,12 @@ public class GameView extends View {
 
     private final void loadSprites() {
         try {
-            sprites = ImageIO.read(getClass().getResourceAsStream("ressources/magecity.png"));
+            sprites = ImageIO.read(getClass().getResourceAsStream("/magecity.png"));
             ground = sprites.getSubimage(32, 0, 32, 32);
             wall = sprites.getSubimage(128, 32, 32, 32);
             grass = sprites.getSubimage(0, 0, 32, 32);
 
-            BufferedImage playerSprites = ImageIO.read(getClass().getResourceAsStream("ressources/player.png"));
+            BufferedImage playerSprites = ImageIO.read(getClass().getResourceAsStream("/player.png"));
             playerSprite = new BufferedImage[] {
                     playerSprites.getSubimage(0, 96, 32, 32),
                     playerSprites.getSubimage(0, 64, 32, 32),
@@ -56,7 +56,7 @@ public class GameView extends View {
                     playerSprites.getSubimage(0, 32, 32, 32)
             };
 
-            BufferedImage chestImg = ImageIO.read(getClass().getResourceAsStream("ressources/chest.png"));
+            BufferedImage chestImg = ImageIO.read(getClass().getResourceAsStream("/chest.png"));
             chestSprite = new BufferedImage[] {
                     chestImg.getSubimage(0,0,32,32),
                     chestImg.getSubimage(32,0,32,32)
@@ -209,16 +209,10 @@ public class GameView extends View {
 
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             addView(new InGameMenuView(game));
-            //gm.add(new InGameMenuView(this, gm, game));
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_PAGE_UP) {
-            Item torch = new Torch();
-            torch.use(game.getPlayer());
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            game.getPlayer().setStrengthLight(game.getPlayer().getStrengthLight() - 1);
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            addView(new ConsoleView(game));
         }
 
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {

@@ -17,7 +17,6 @@ public class Player extends Entity {
     public Player(int x, int y) {
         super(x, y, Orientation.EAST);
         setStrengthLight(DEFAULT_STRENGTH_LIGHT);
-        power = new DestructionPower();
     }
 
     public int getStrengthLight() {

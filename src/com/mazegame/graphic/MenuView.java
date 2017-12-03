@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MenuView extends View {
@@ -15,7 +16,7 @@ public class MenuView extends View {
 
     public MenuView() {
         try {
-            background = ImageIO.read(getClass().getResourceAsStream("background2.jpg"));
+            background = ImageIO.read(getClass().getResourceAsStream("/background2.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -22,11 +22,13 @@ public class DestructionPower extends Power {
         int x = (int) player.getX();
         int y = (int) player.getY();
 
-        for (int i = x - 1; i < x + 1; i++) {
-            for (int j = y - 1; j < y + 1; j++) {
-                MazeNode node = maze.getAt(i, j);
-                if (node != null && node.getType() == MazeNodeType.WALL) {
-                    node.setType(MazeNodeType.EMPTY);
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if (i > 0 && j > 0 && i < maze.getWidth() - 1 && j < maze.getHeight() - 1) {
+                    MazeNode node = maze.getAt(i, j);
+                    if (node != null && node.getType() == MazeNodeType.WALL) {
+                        node.setType(MazeNodeType.EMPTY);
+                    }
                 }
             }
         }
