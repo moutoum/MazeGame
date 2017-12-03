@@ -15,5 +15,10 @@ public class Maze implements Serializable {
 
     public int getWidth() { return this.width; }
     public int getHeight() { return this.height; }
-    public MazeNode getAt(int x, int y) { return maze[x][y]; }
+    public MazeNode getAt(int x, int y) {
+        if (x >= 0 && y >= 0 && x < width && y < height) {
+            return maze[x][y];
+        }
+        return (null);
+    }
 }

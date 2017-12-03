@@ -13,7 +13,7 @@ public final class Main extends JFrame {
     }
 
     public final void start() {
-        System.out.println("Game starting...");
+        System.out.println("Game starting....");
         this.setContentPane(new GamePanel());
         this.setVisible(true);
         this.pack();

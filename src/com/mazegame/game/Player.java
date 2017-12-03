@@ -11,11 +11,13 @@ public class Player extends Entity {
     private float beginX;
     private float beginY;
     private int strengthLight;
+    private Power power;
 
 
     public Player(int x, int y) {
         super(x, y, Orientation.EAST);
         setStrengthLight(DEFAULT_STRENGTH_LIGHT);
+        power = new DestructionPower();
     }
 
     public int getStrengthLight() {
@@ -24,6 +26,21 @@ public class Player extends Entity {
 
     public void setStrengthLight(int strengthLight) {
         this.strengthLight = (strengthLight < DEFAULT_STRENGTH_LIGHT) ? DEFAULT_STRENGTH_LIGHT : strengthLight;
+    }
+
+    public void usePower(Game game) {
+        if (power != null) {
+            power.use(game);
+            power = null;
+        }
+    }
+
+    public boolean hasPower() {
+        return (power != null);
+    }
+
+    public void setPower(Power power) {
+        this.power = power;
     }
 
     public void move() {

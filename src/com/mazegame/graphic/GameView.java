@@ -43,12 +43,12 @@ public class GameView extends View {
 
     private final void loadSprites() {
         try {
-            sprites = ImageIO.read(new FileInputStream("ressources/magecity.png"));
+            sprites = ImageIO.read(getClass().getResourceAsStream("ressources/magecity.png"));
             ground = sprites.getSubimage(32, 0, 32, 32);
             wall = sprites.getSubimage(128, 32, 32, 32);
             grass = sprites.getSubimage(0, 0, 32, 32);
 
-            BufferedImage playerSprites = ImageIO.read(new FileInputStream("ressources/player.png"));
+            BufferedImage playerSprites = ImageIO.read(getClass().getResourceAsStream("ressources/player.png"));
             playerSprite = new BufferedImage[] {
                     playerSprites.getSubimage(0, 96, 32, 32),
                     playerSprites.getSubimage(0, 64, 32, 32),
@@ -56,7 +56,7 @@ public class GameView extends View {
                     playerSprites.getSubimage(0, 32, 32, 32)
             };
 
-            BufferedImage chestImg = ImageIO.read(new FileInputStream("ressources/chest.png"));
+            BufferedImage chestImg = ImageIO.read(getClass().getResourceAsStream("ressources/chest.png"));
             chestSprite = new BufferedImage[] {
                     chestImg.getSubimage(0,0,32,32),
                     chestImg.getSubimage(32,0,32,32)
@@ -174,7 +174,6 @@ public class GameView extends View {
 
         if ( game.isLevelEnd() ) {
             addView(new NotificationView("Bravo ! Tu es passé level "+ (game.getLevel().getLevel()+1) ));
-            //gm.add(new NotificationView(this, gm, "Bravo ! Tu es passé level "+ (game.getLevel().getLevel()+1) ));
         }
     }
 
@@ -229,6 +228,11 @@ public class GameView extends View {
                 i.use(game.getPlayer());
                 addView(new NotificationView(String.format("Nouvel item: %s", i.getName())));
             }
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_P && game.getPlayer().hasPower()) {
+            game.getPlayer().usePower(game);
+            addView(new NotificationView("POOWERR!!"));
         }
     }
 
