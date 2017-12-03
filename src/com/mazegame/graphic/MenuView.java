@@ -1,7 +1,5 @@
 package com.mazegame.graphic;
 
-import com.mazegame.game.Game;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -8,7 +8,7 @@ public abstract class Power {
         this.effectDurationReload = effectDuration;
     }
 
-    public void use() {
+    public void use(Game game) {
         start = System.currentTimeMillis();
     }
 

@@ -230,8 +230,9 @@ public class GameView extends View {
             }
         }
 
-        if (e.getKeyCode() == KeyEvent.VK_P) {
-            game.getPlayer().usePower();
+        if (e.getKeyCode() == KeyEvent.VK_P && game.getPlayer().hasPower()) {
+            game.getPlayer().usePower(game);
+            addView(new NotificationView("POOWERR!!"));
         }
     }
 
