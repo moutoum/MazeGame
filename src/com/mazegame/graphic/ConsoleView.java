@@ -2,7 +2,6 @@ package com.mazegame.graphic;
 
 import com.mazegame.game.DestructionPower;
 import com.mazegame.game.Game;
-import com.sun.deploy.util.StringUtils;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
